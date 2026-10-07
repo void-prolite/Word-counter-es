@@ -1,0 +1,49 @@
+---
+// src/components/Footer.astro
+const currentYear = new Date().getFullYear();
+---
+<footer class="app-footer">
+  <div class="footer-about-section">
+    <h3 class="footer-about-title">¿Qué es un Contador de Palabras Online y para qué sirve?</h3>
+    <p class="footer-about-text">
+      Nuestro <strong>contador de palabras</strong> online en <strong>contadordepalabras.online</strong> es una herramienta precisa, gratuita y diseñada para escritores, estudiantes, periodistas, redactores SEO y profesionales que necesitan realizar un <strong>conteo de palabras y caracteres</strong> en tiempo real con total privacidad. Todo el procesamiento se realiza localmente en tu navegador.
+    </p>
+  </div>
+
+  <div class="footer-content">
+    <div class="footer-brand-col">
+      <div class="footer-logo">
+        <img src="/favicon.png" alt="Logo" class="footer-logo-img" width="28" height="28" loading="lazy" />
+        <span class="footer-logo-text">contador<span class="highlight">depalabras</span></span>
+      </div>
+      <p class="footer-desc">
+        Herramienta en línea gratuita para contar palabras, caracteres y evaluar legibilidad en español.
+      </p>
+    </div>
+
+    <div class="footer-links-grid">
+      <div class="footer-col">
+        <h4 class="footer-heading">Navegación</h4>
+        <ul class="footer-menu">
+          <li><a href="/">Contador de Palabras</a></li>
+          <li><a href="/#faq">Preguntas Frecuentes (FAQ)</a></li>
+          <li><a href="/#legibilidad">Índice de Legibilidad</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading">Legal & Privacidad</h4>
+        <ul class="footer-menu">
+          <li><a href="/privacidad">Política de Privacidad</a></li>
+          <li><a href="/terminos">Términos de Servicio</a></li>
+          <li><a href="/privacidad#local-storage">Uso de Almacenamiento</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {currentYear} contadordepalabras.online &bull; Todos los derechos reservados.</p>
+    <p class="footer-subtext">Rápido, privado y gratuito para redactores y estudiantes.</p>
+  </div>
+</footer>

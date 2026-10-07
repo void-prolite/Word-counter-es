@@ -1,0 +1,207 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Contador de Palabras Online Gratis | Conteo de Palabras y Caracteres"
+  description="Contador de palabras online gratis y preciso. Cuenta palabras, caracteres con y sin espacios, frases, párrafos y tiempo de lectura en tiempo real con total privacidad."
+  showSkeleton={true}
+>
+  <!-- Primary Stats Grid -->
+  <section class="metrics-grid" aria-label="Estadísticas de conteo de texto">
+    <div class="metric-card primary">
+      <div class="metric-header">
+        <span class="metric-label">PALABRAS</span>
+      </div>
+      <div class="metric-value" id="wordCount">0</div>
+      <div class="metric-hint">Página estándar: ~250 palabras</div>
+    </div>
+
+    <div class="metric-card" id="metric-chars">
+      <div class="metric-header">
+        <span class="metric-label">CARACTERES</span>
+      </div>
+      <div class="metric-value" id="charCount">0</div>
+      <div class="metric-hint"><span id="charNoSpacesCount">0</span> sin espacios</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-header">
+        <span class="metric-label">ORACIONES</span>
+      </div>
+      <div class="metric-value" id="sentenceCount">0</div>
+      <div class="metric-hint"><span id="avgWordLength">0.0</span> carac. / palabra</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-header">
+        <span class="metric-label">PÁRRAFOS</span>
+      </div>
+      <div class="metric-value" id="paragraphCount">0</div>
+      <div class="metric-hint"><span id="readingLevelBadge">Muy Fácil</span></div>
+    </div>
+  </section>
+
+  <!-- Editor Section -->
+  <section class="editor-section" id="editor" aria-label="Área de edición de texto">
+    <!-- Editor Toolbar -->
+    <div class="editor-toolbar">
+      <div class="toolbar-group">
+        <button class="tool-btn" id="copyBtn" title="Copiar texto al portapapeles">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+          <span>Copiar</span>
+        </button>
+        <button class="tool-btn" id="downloadBtn" title="Descargar texto como archivo .txt">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span>Guardar .txt</span>
+        </button>
+        <div class="dropdown-wrapper">
+          <button class="tool-btn" id="caseDropdownBtn" title="Cambiar mayúsculas y minúsculas">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>
+            <span>Mayúsculas / Minúsculas</span>
+            <span class="arrow">▾</span>
+          </button>
+          <div class="dropdown-menu" id="caseMenu">
+            <button class="dropdown-item" data-case="uppercase">MAYÚSCULAS</button>
+            <button class="dropdown-item" data-case="lowercase">minúsculas</button>
+            <button class="dropdown-item" data-case="titlecase">Tipo Título</button>
+            <button class="dropdown-item" data-case="sentencecase">Tipo oración</button>
+          </div>
+        </div>
+        <button class="tool-btn" id="cleanSpacesBtn" title="Eliminar espacios y saltos de línea excesivos">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          <span>Limpiar Espacios</span>
+        </button>
+      </div>
+
+      <div class="toolbar-group">
+        <button class="tool-btn text-danger" id="clearBtn" title="Borrar todo el texto">
+          <span>Borrar</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Text Area -->
+    <div class="textarea-container">
+      <textarea
+        id="textInput"
+        placeholder="Escribe o pega tu texto aquí para contar palabras y caracteres..."
+        spellcheck="true"
+        autofocus
+      ></textarea>
+    </div>
+
+    <!-- Editor Footer Quick Info -->
+    <div class="editor-footer" id="metric-reading">
+      <div class="footer-stats">
+        <div class="time-stat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <span>Tiempo de Lectura: <strong id="readingTime">0 seg</strong></span>
+        </div>
+        <div class="time-stat">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+          <span>Tiempo de Discurso: <strong id="speakingTime">0 seg</strong></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Insights Grid -->
+  <section class="insights-grid" id="legibilidad">
+    <!-- Readability Gauge -->
+    <div class="insight-card">
+      <div class="insight-header">
+        <h3>Legibilidad y Fluidez</h3>
+        <span class="flesch-badge" id="fleschScoreLabel">Puntaje 100/100</span>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="readabilityProgress" style="width: 100%;"></div>
+      </div>
+      <div class="insight-desc">
+        <p id="readabilityDescription">El texto es muy fácil de leer, comprensible para cualquier lector.</p>
+      </div>
+    </div>
+
+    <!-- Top Keywords / Density -->
+    <div class="insight-card">
+      <div class="insight-header">
+        <h3>Palabras Clave y Densidad</h3>
+        <span class="subtle-text">Excluye palabras comunes de enlace</span>
+      </div>
+      <div class="keywords-list" id="keywordsContainer">
+        <p class="empty-keywords">Escribe texto para ver las palabras más repetidas y su densidad.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Frequently Asked Questions (FAQ) Section -->
+  <section class="faq-section" id="faq" aria-label="Preguntas Frecuentes">
+    <div class="faq-header">
+      <span class="faq-badge">Ayuda y Respuestas</span>
+      <h2 class="faq-title">Preguntas Frecuentes (FAQ)</h2>
+      <p class="faq-subtitle">Todo lo que necesitas saber sobre el funcionamiento del contador de palabras y la privacidad de tus textos.</p>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary class="faq-question">
+          <span>¿Es seguro usar este contador? ¿Mis textos quedan guardados en algún servidor?</span>
+          <span class="faq-icon">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            <strong>Es 100% seguro y privado.</strong> Todo el procesamiento de texto ocurre directamente en tu navegador web usando JavaScript local. En ningún momento tus textos se envían, guardan o transfieren a servidores externos o bases de datos.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>¿Cómo se calculan los tiempos estimados de lectura y discurso?</span>
+          <span class="faq-icon">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            El <strong>tiempo de lectura silenciosa</strong> se basa en un promedio estándar de <strong>225 palabras por minuto (PPM)</strong>. El <strong>tiempo de discurso oral</strong> se calcula a razón de <strong>130 palabras por minuto (PPM)</strong>, que es la velocidad habitual para presentaciones, discursos y lectura en voz alta comprensible.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>¿Qué es el índice de legibilidad y cómo se interpreta?</span>
+          <span class="faq-icon">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            Utilizamos la fórmula de <strong>Flesch-Szigriszt</strong>, una adaptación científica del índice de Flesch diseñada específicamente para la estructura silábica del idioma español. Evalúa la relación entre la cantidad de sílabas por palabra y la longitud de las oraciones para clasificar el texto desde <em>"Muy Fácil"</em> hasta <em>"Muy Difícil"</em>.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>¿Se pierde mi texto si recargo o cierro la página por accidente?</span>
+          <span class="faq-icon">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            No. Tu navegador almacena automáticamente una copia local temporal mediante <code>localStorage</code>. Al volver a abrir la página, tu borrador se restaurará automáticamente. Si deseas eliminarlo por completo, solo pulsa el botón <em>"Borrar"</em> en la barra de herramientas.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">
+          <span>¿Existe algún límite en la cantidad de palabras o caracteres que puedo contar?</span>
+          <span class="faq-icon">▾</span>
+        </summary>
+        <div class="faq-answer">
+          <p>
+            No hay ningún límite impuesto. Puedes pegar desde un tuit breve hasta un ensayo académico, una tesis o un libro completo. La herramienta procesará el contenido al instante gracias a su motor optimizado en el cliente.
+          </p>
+        </div>
+      </details>
+    </div>
+  </section>
+</Layout>

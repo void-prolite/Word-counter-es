@@ -1,0 +1,85 @@
+---
+// src/pages/privacidad.astro
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Política de Privacidad | Contador de Palabras Online"
+  description="Nuestra política de privacidad detalla el procesamiento local de tus textos, el uso de almacenamiento local y la gestión de cookies y publicidad."
+>
+  <article class="legal-article">
+    <div class="legal-header">
+      <span class="legal-badge">Privacidad & Confidencialidad</span>
+      <h1 class="legal-title">Política de Privacidad</h1>
+      <p class="legal-updated">Última actualización: Marzo 2026</p>
+    </div>
+
+    <div class="legal-intro-box">
+      <strong>En resumen:</strong> Tu privacidad y la confidencialidad de tus escritos es prioritaria. No leemos, transmitimos ni almacenamos los textos que ingresas en el editor. Todo el conteo y análisis de legibilidad ocurre 100% en tu navegador de forma local.
+    </div>
+
+    <section class="legal-section">
+      <h2>1. Procesamiento 100% en el Cliente (Sin Servidores)</h2>
+      <p>
+        A diferencia de otras herramientas que transmiten tus documentos a servidores remotos para su análisis, <strong>contadordepalabras.online</strong> opera con código JavaScript que se ejecuta exclusivamente dentro de tu dispositivo:
+      </p>
+      <ul>
+        <li>El conteo de palabras, caracteres, oraciones y párrafos se efectúa de manera local.</li>
+        <li>El cálculo de legibilidad (índice Flesch-Szigriszt) y los tiempos estimados de lectura y discurso se procesan en tu propia máquina.</li>
+        <li>Tus notas, artículos y textos <strong>nunca salen de tu navegador</strong> ni se transfieren por la red a ningún servidor ni a redes publicitarias.</li>
+      </ul>
+    </section>
+
+    <section class="legal-section" id="local-storage">
+      <h2>2. Uso del Almacenamiento Local (LocalStorage)</h2>
+      <p>
+        Para tu comodidad y con el fin de evitar que pierdas tu trabajo si cierras o recargas accidentalmente la pestaña, la aplicación emplea la memoria local de tu navegador (<code>localStorage</code>):
+      </p>
+      <ul>
+        <li>
+          <strong><code>contador_palabras_texto</code>:</strong> Almacena temporalmente el contenido del editor en tu navegador. Puedes borrarlo en cualquier momento pulsando el botón <em>"Borrar"</em>.
+        </li>
+        <li>
+          <strong><code>contador_palabras_tema</code>:</strong> Registra tu preferencia visual entre el modo claro y el modo oscuro.
+        </li>
+      </ul>
+      <p>
+        Estos valores permanecen únicamente en tu dispositivo.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>3. Cookies y Publicidad de Terceros</h2>
+      <p>
+        Este sitio web puede mostrar anuncios publicitarios servidos por proveedores y redes de publicidad de terceros (como Google AdSense y sus socios):
+      </p>
+      <ul>
+        <li>
+          Los proveedores externos utilizan cookies y tecnologías similares para publicar anuncios basados en las visitas previas del usuario a este u otros sitios web.
+        </li>
+        <li>
+          El uso de cookies publicitarias permite a los proveedores y a sus socios mostrar anuncios personalizados según tus intereses de navegación en Internet.
+        </li>
+        <li>
+          Puedes inhabilitar la publicidad personalizada a través de la configuración de anuncios de Google o mediante la gestión de cookies en tu navegador web (por ejemplo, visitando <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer">aboutads.info</a> o <a href="https://www.youronlinechoices.com" target="_blank" rel="noopener noreferrer">youronlinechoices.com</a>).
+        </li>
+        <li>
+          <strong>Importante:</strong> Los proveedores y redes publicitarias <em>nunca</em> tienen acceso ni reciben el contenido de los textos que introduces en la herramienta de conteo de palabras.
+        </li>
+      </ul>
+    </section>
+
+    <section class="legal-section">
+      <h2>4. Seguridad de tus Textos</h2>
+      <p>
+        Al no existir una base de datos central ni almacenamiento en la nube para los escritos, es técnicamente imposible que ocurra una filtración de datos de tus contenidos. Tus borradores y documentos son estrictamente privados en tu equipo.
+      </p>
+    </section>
+
+    <section class="legal-section">
+      <h2>5. Contacto</h2>
+      <p>
+        Si tienes cualquier duda o consulta sobre nuestra política de privacidad, puedes visitarnos en <a href="/">contadordepalabras.online</a>.
+      </p>
+    </section>
+  </article>
+</Layout>

@@ -1,0 +1,117 @@
+---
+// src/pages/404.astro
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="404 - Página No Encontrada | Contador de Palabras"
+  description="La página que buscas no existe o ha sido movida. Vuelve al contador de palabras online."
+  robots="noindex, follow"
+>
+  <div class="error-container">
+    <span class="error-badge">Error 404</span>
+    <div class="error-code">404</div>
+    <h2 class="error-title">Página no encontrada</h2>
+    <p class="error-desc">
+      Lo sentimos, la página que buscas no existe, ha sido cambiada de lugar o no está disponible temporalmente.
+    </p>
+    <div class="error-actions">
+      <a href="/" class="return-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Volver al Contador</span>
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .error-container {
+    background: var(--bg-surface);
+    border: 1.5px solid var(--border-color);
+    border-radius: var(--radius-xl);
+    padding: 60px 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    margin: 30px 0;
+  }
+
+  .error-badge {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+  }
+
+  .error-code {
+    font-family: var(--font-serif);
+    font-size: clamp(5rem, 14vw, 8.5rem);
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .error-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+  }
+
+  .error-desc {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 480px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  .error-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .return-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .return-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    color: #ffffff;
+  }
+
+  .return-btn svg {
+    transition: transform 0.2s ease;
+  }
+
+  .return-btn:hover svg {
+    transform: translateX(-3px);
+  }
+</style>
